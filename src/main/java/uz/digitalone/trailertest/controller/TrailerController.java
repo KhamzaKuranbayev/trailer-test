@@ -10,7 +10,7 @@ import uz.digitalone.trailertest.service.TrailerService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/trailer")
+@RequestMapping("/api/trailer_states")
 public class TrailerController {
 
     private final TrailerService trailerService;
@@ -24,6 +24,7 @@ public class TrailerController {
         return trailerService.get();
     }
 
+    // Live data by id
     @GetMapping("/{id}")
     public Trailer getById(@PathVariable Integer id) {
         return trailerService.getById(id);
