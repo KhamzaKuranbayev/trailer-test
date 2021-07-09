@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
@@ -44,7 +45,7 @@ public class TrailerServiceImpl implements TrailerService {
     @Override
     public List<Trailer> getAll(int pageNum, int size) {
         final Pageable page = PageRequest.of(pageNum, size);
-        return trailerRepository.getAll(page);
+        return (List<Trailer>) trailerRepository.findAll(page);
     }
 
     @Override
