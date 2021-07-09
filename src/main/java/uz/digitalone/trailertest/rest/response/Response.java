@@ -5,14 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrailerResponse {
+@Getter
+@Setter
+public class Response {
 
-    private Integer id;
+    private boolean success;
+    private String message;
+    private Object data;
+
 
 }
-

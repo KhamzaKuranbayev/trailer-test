@@ -2,7 +2,6 @@ package uz.digitalone.trailertest.service;
 
 
 import uz.digitalone.trailertest.entity.Trailer;
-import uz.digitalone.trailertest.rest.response.TrailerResponse;
 
 import java.util.List;
 

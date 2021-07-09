@@ -3,18 +3,15 @@ package uz.digitalone.trailertest.controller;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uz.digitalone.trailertest.rest.response.TrailerResponse;
 import uz.digitalone.trailertest.service.TrailerService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/trailer_states")
-public class TrailerController {
+public class ApiController {
 
     private final TrailerService trailerService;
 
-    public TrailerController(TrailerService trailerService) {
+    public ApiController(TrailerService trailerService) {
         this.trailerService = trailerService;
     }
 
