@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,7 +13,7 @@ public class Response {
 
     private boolean success;
     private String message;
-    private List<Object> data;
+    private Object data;
 
 
 }
