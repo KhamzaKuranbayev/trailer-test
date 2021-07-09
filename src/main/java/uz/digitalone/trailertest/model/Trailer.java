@@ -1,7 +1,6 @@
 package uz.digitalone.trailertest.model;
 
-public class Trailer
-{
+public class Trailer {
 
     public Trailer() {
     }

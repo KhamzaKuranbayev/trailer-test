@@ -6,11 +6,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uz.digitalone.trailertest.entity.Trailer;
 import uz.digitalone.trailertest.model.Root;
+import uz.digitalone.trailertest.repository.TrailerRepository;
 import uz.digitalone.trailertest.rest.response.AuthResponse;
 import uz.digitalone.trailertest.utils.Constants;
 
@@ -23,19 +26,29 @@ public class TrailerServiceImpl implements TrailerService {
 
     final RestTemplate restTemplate;
 
+    final TrailerRepository trailerRepository;
+
     public TrailerServiceImpl(AuthResponse refreshToken,
-                              RestTemplate restTemplate) {
+                              RestTemplate restTemplate,
+                              TrailerRepository trailerRepository) {
         this.refreshToken = refreshToken;
         this.restTemplate = restTemplate;
+        this.trailerRepository = trailerRepository;
     }
 
     @Override
-    public List<Trailer> get() {
+    public List<Trailer> getAll() {
         return new ArrayList<>();
     }
 
     @Override
-    public Trailer getById(Integer id) {
+    public List<Trailer> getAll(int pageNum, int size) {
+        final Pageable page = PageRequest.of(pageNum, size);
+        return trailerRepository.getAll(page);
+    }
+
+    @Override
+    public Trailer getByTrailerId(Integer id) {
         String token = "";
         if (refreshToken.getToken() != null) {
             token = refreshToken.getToken();
@@ -84,7 +97,7 @@ public class TrailerServiceImpl implements TrailerService {
 
                 if (key.equals("data")) {
 
-                    Object value =  entry.getValue();
+                    Object value = entry.getValue();
 
 
                 }

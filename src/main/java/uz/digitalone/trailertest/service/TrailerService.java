@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface TrailerService {
 
-    List<Trailer> get();
+    List<Trailer> getAll();
 
-    Trailer getById(Integer id);
+    List<Trailer> getAll(int pageNum, int size);
+
+    Trailer getByTrailerId(Integer id);
+
 }
