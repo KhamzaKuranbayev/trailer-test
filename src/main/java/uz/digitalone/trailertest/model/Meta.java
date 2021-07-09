@@ -4,6 +4,9 @@ public class Meta
 {
     private int resourceCount;
 
+    public Meta() {
+    }
+
     public void setResourceCount(int resourceCount){
         this.resourceCount = resourceCount;
     }

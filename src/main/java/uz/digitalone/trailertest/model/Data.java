@@ -12,6 +12,9 @@ public class Data
 
     private Links links;
 
+    public Data() {
+    }
+
     public void setType(String type){
         this.type = type;
     }
@@ -42,4 +45,6 @@ public class Data
     public Links getLinks(){
         return this.links;
     }
+
+
 }

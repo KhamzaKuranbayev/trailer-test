@@ -8,6 +8,8 @@ public class LastEvent
 
     public String sensorData;
 
+    public LastEvent() {
+    }
 
     public void setMessageDate(String messageDate){
         this.messageDate = messageDate;

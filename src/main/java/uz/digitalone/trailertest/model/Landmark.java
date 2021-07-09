@@ -5,6 +5,9 @@ public class Landmark {
 
     private String name;
 
+    public Landmark() {
+    }
+
     public void setId(int id){
         this.id = id;
     }

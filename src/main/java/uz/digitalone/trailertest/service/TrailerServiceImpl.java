@@ -3,6 +3,7 @@ package uz.digitalone.trailertest.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
@@ -74,10 +75,11 @@ public class TrailerServiceImpl implements TrailerService {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
 
-            Root root = objectMapper.readValue(body, Root.class);
+            objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+            Root root = objectMapper.reader().forType(Root.class).readValue(body);
 
 
-            Map<String, Object> map = objectMapper.readValue(body, new TypeReference<>() {
+          /*  Map<String, Object> map = objectMapper.readValue(body, new TypeReference<Map<String, Object>>() {
             });
 
             Set<Map.Entry<String, Object>> entries = map.entrySet();
@@ -90,7 +92,9 @@ public class TrailerServiceImpl implements TrailerService {
 
 
                 }
-            }
+            }*/
+
+            System.out.println(root.toString());
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

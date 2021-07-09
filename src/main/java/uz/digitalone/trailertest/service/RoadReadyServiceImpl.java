@@ -24,7 +24,7 @@ public class RoadReadyServiceImpl implements RoadReadyService{
     @Override
     public RoadReady getById(Integer id) {
         final Optional<RoadReady> roadReadyOptional = roadReadyRepository.findById(id);
-        if (roadReadyOptional.isEmpty()){
+        if (!roadReadyOptional.isPresent()){
             return null;
         }
         return roadReadyOptional.get();

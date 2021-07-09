@@ -5,6 +5,9 @@ public class LandmarksNear {
 
     private String name;
 
+    public LandmarksNear() {
+    }
+
     public void setId(int id){
         this.id = id;
     }

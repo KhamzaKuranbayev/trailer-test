@@ -2,6 +2,10 @@ package uz.digitalone.trailertest.model;
 
 public class Trailer
 {
+
+    public Trailer() {
+    }
+
     private Links links;
 
     private Data data;

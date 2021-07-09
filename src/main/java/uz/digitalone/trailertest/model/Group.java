@@ -6,6 +6,9 @@ public class Group
 
     private boolean fleet;
 
+    public Group() {
+    }
+
     public void setName(String name){
         this.name = name;
     }

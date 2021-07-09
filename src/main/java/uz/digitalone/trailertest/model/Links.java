@@ -1,6 +1,9 @@
 package uz.digitalone.trailertest.model;
 
 public class Links {
+    public Links() {
+    }
+
     private String self;
 
     private String related;
