@@ -3,7 +3,6 @@ package uz.digitalone.trailertest.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.xml.crypto.Data;
 import java.sql.Timestamp;
 import java.util.TimeZone;
 
@@ -13,7 +12,7 @@ import java.util.TimeZone;
 @Getter
 @Setter
 @Entity
-public class RoadReady extends _Vendor {
+public class RoadReady extends Vendor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

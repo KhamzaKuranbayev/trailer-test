@@ -7,11 +7,11 @@ import uz.digitalone.trailertest.service.TrailerService;
 
 @RestController
 @RequestMapping("/api/trailer_states")
-public class TrailerController {
+public class ApiController {
 
     private final TrailerService trailerService;
 
-    public TrailerController(TrailerService trailerService) {
+    public ApiController(TrailerService trailerService) {
         this.trailerService = trailerService;
     }
 
