@@ -1473,11 +1473,6 @@ public class Main {
                 "    }\n" +
                 "}";
 
-
-
-
-
-
     }
 
     private static Trailer objectMapper2(String responseEntity) {
@@ -1511,9 +1506,6 @@ public class Main {
             }
 
         }
-
-
-
 
         return new Trailer();
     }

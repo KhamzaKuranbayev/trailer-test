@@ -2,7 +2,6 @@ package uz.digitalone.trailertest.service;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -38,15 +37,11 @@ public class TrailerServiceImpl implements TrailerService {
     }
 
     @Override
-    public List<Trailer> getAll() {
-        return new ArrayList<>();
-    }
-
-    @Override
-    public List<Trailer> getAll(int pageNum, int size) {
+    public List<Trailer> getAll(Integer pageNum, Integer size) {
         final Pageable page = PageRequest.of(pageNum, size);
         return (List<Trailer>) trailerRepository.findAll(page);
     }
+
 
     @Override
     public Trailer getById(Integer id) {
@@ -83,6 +78,13 @@ public class TrailerServiceImpl implements TrailerService {
     @Override
     public Trailer getByTrailerId(Long id) {
         return trailerRepository.getByTrailerId(id);
+    }
+
+    @Override
+    public Trailer getByLocation(String location) {
+        Optional<Trailer> byLocation = trailerRepository.findByLocation(location);
+
+        return byLocation.orElse(null);
     }
 
     private Trailer objectMapper(String body) {
