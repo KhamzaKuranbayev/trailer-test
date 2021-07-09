@@ -20,11 +20,6 @@ public class ApiController {
         this.trailerService = trailerService;
     }
 
-    @GetMapping
-    public HttpEntity<?> get() {
-        return ResponseEntity.ok(trailerService.getAll());
-    }
-
     // Live data by id
     @GetMapping("/{id}")
     public HttpEntity<?> getByTrailerId(@PathVariable Long id) {
