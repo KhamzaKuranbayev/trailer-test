@@ -1,12 +1,14 @@
 package uz.digitalone.trailertest.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
+
 
 @Entity
 @AllArgsConstructor
@@ -19,17 +21,27 @@ public class Trailer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String type;
+
+    private Long uniqueId;
+
     public String distance;
 
     private Double latitude;
 
     private String powerSource;
 
+    @OneToMany
+    private List<LandMark> landMarks;
+
     private String idleTime;
 
     private String speed;
 
     private Timestamp lastPingDate;
+
+    @OneToMany
+    private List<LandMark> landMarksNear;
 
     private String batteryState;
 
@@ -43,15 +55,8 @@ public class Trailer {
 
     private String landmarkTrailerState;
 
-    private Integer noOfAxle;
-
-    private String groupName;
-
-    private boolean groupFeet;
-
-    private Integer noOfStemcoAxle;
-
-    private Integer loadsSelfCanceled;
+    @OneToMany
+    private List<Group> groups;
 
     private Timestamp lastEventMessageDate;
 
@@ -59,7 +64,7 @@ public class Trailer {
 
     private String location;
 
-    private Integer trailerId;
+    private Long trailerId;
 
     private String trailerState;
 }

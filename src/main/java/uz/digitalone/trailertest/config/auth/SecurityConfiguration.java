@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import uz.digitalone.trailertest.rest.response.AuthResponse;
-import uz.digitalone.trailertest.service.CookieRestTemplate;
 import uz.digitalone.trailertest.utils.Constants;
 
 import java.util.HashMap;
@@ -18,7 +17,7 @@ import java.util.Map;
 public class SecurityConfiguration {
 
     @Autowired
-    CookieRestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     @Bean
     AuthResponse refreshToken() {

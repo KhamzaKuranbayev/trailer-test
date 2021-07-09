@@ -1,10 +1,9 @@
 package uz.digitalone.trailertest.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import uz.digitalone.trailertest.entity.Trailer;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import uz.digitalone.trailertest.rest.response.TrailerResponse;
 import uz.digitalone.trailertest.service.TrailerService;
 
 import java.util.List;
@@ -20,13 +19,15 @@ public class TrailerController {
     }
 
     @GetMapping
-    public List<Trailer> get() {
-        return trailerService.get();
+    public HttpEntity<?> get() {
+        return ResponseEntity.ok(trailerService.get());
     }
 
     // Live data by id
     @GetMapping("/{id}")
-    public Trailer getById(@PathVariable Integer id) {
-        return trailerService.getById(id);
+    public HttpEntity<?> getById(@PathVariable Integer id) {
+        return ResponseEntity.ok(trailerService.getById(id));
     }
+
+
 }

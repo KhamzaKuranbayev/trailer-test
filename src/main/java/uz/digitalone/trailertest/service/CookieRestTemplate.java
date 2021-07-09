@@ -1,3 +1,4 @@
+/*
 package uz.digitalone.trailertest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,3 +27,4 @@ public class CookieRestTemplate extends RestTemplate {
         return request;
     }
 }
+*/
