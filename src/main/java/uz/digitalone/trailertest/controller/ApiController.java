@@ -27,8 +27,9 @@ public class ApiController {
 
     // Live data by id
     @GetMapping("/{id}")
-    public HttpEntity<?> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(trailerService.getById(id));
+    public HttpEntity<?> getByTrailerId(@PathVariable Long id) {
+        final Trailer trailer = trailerService.findByTrailerId(id);
+        return ResponseEntity.status(200).body(trailer);
     }
 
 
@@ -38,6 +39,5 @@ public class ApiController {
         List<Object> list = new ArrayList<>(trailerList);
         return ResponseEntity.status(200).body(new Response(true, "trailers info", list));
     }
-
 
 }

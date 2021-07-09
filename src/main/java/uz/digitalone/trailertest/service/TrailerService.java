@@ -13,5 +13,5 @@ public interface TrailerService {
 
     Trailer getById(Integer id);
 
-    Trailer getByTrailerId(Long id);
+    Trailer findByTrailerId(Long id);
 }

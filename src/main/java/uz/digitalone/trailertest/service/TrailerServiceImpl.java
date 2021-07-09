@@ -81,8 +81,12 @@ public class TrailerServiceImpl implements TrailerService {
     }
 
     @Override
-    public Trailer getByTrailerId(Long id) {
-        return trailerRepository.getByTrailerId(id);
+    public Trailer findByTrailerId(Long id) {
+        final Optional<Trailer> optionalTrailer = trailerRepository.findByTrailerId(id);
+        if (optionalTrailer.isEmpty()){
+            return null;
+        }
+        return optionalTrailer.get();
     }
 
     private Trailer objectMapper(String body) {
