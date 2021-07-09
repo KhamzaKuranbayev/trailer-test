@@ -11,6 +11,7 @@ public interface TrailerService {
 
     List<Trailer> getAll(int pageNum, int size);
 
-    Trailer getByTrailerId(Integer id);
+    Trailer getById(Integer id);
 
+    Trailer getByTrailerId(Long id);
 }

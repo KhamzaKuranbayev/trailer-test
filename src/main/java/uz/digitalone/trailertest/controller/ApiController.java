@@ -28,15 +28,15 @@ public class ApiController {
     // Live data by id
     @GetMapping("/{id}")
     public HttpEntity<?> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(trailerService.getByTrailerId(id));
+        return ResponseEntity.ok(trailerService.getById(id));
     }
 
 
     @GetMapping("/all")
-    public Response getAll(@RequestParam Integer pageNumber, @RequestParam Integer size) {
+    public HttpEntity<?> getAll(@RequestParam Integer pageNumber, @RequestParam Integer size) {
         final List<Trailer> trailerList = trailerService.getAll(pageNumber, size);
         List<Object> list = new ArrayList<>(trailerList);
-        return new Response(true, "trailers info", list);
+        return ResponseEntity.status(200).body(new Response(true, "trailers info", list));
     }
 
 

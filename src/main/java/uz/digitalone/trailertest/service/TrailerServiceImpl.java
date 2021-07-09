@@ -48,7 +48,7 @@ public class TrailerServiceImpl implements TrailerService {
     }
 
     @Override
-    public Trailer getByTrailerId(Integer id) {
+    public Trailer getById(Integer id) {
         String token = "";
         if (refreshToken.getToken() != null) {
             token = refreshToken.getToken();
@@ -77,6 +77,11 @@ public class TrailerServiceImpl implements TrailerService {
         }
 
         return new Trailer();
+    }
+
+    @Override
+    public Trailer getByTrailerId(Long id) {
+        return trailerRepository.getByTrailerId(id);
     }
 
     private Trailer objectMapper(String body) {
