@@ -10,7 +10,7 @@ public interface TrailerRepository extends JpaRepository<Trailer, Integer>  {
 
 //    List<Trailer> getAll(Pageable pageable);
 
-    Trailer getByTrailerId(Long id);
+    Optional<Trailer> findByTrailerId(Long id);
 
     Optional<Trailer> findByLocation(String location);
 }
