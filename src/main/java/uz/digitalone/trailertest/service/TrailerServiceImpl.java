@@ -5,14 +5,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uz.digitalone.trailertest.entity.Trailer;
-import uz.digitalone.trailertest.model.Attributes;
-import uz.digitalone.trailertest.model.Data;
 import uz.digitalone.trailertest.model.Root;
 import uz.digitalone.trailertest.rest.response.AuthResponse;
 import uz.digitalone.trailertest.utils.Constants;
