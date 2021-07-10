@@ -4,11 +4,17 @@ package uz.digitalone.trailertest.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import uz.digitalone.trailertest.entity.Trailer;
 import uz.digitalone.trailertest.repository.TrailerRepository;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +52,39 @@ public class TrailerServiceImpl implements TrailerService {
             return null;
         }
         return optionalTrailer.get();
+    }
+
+    @Override
+    public Page<Trailer> findFiltered(String vendor, String trailerNumber, String lat, String lang,
+                                      String lastUpdate, String trailerType, String motion) {
+
+
+
+        return null;
+    }
+
+    private static Specification<Trailer> getFilterSpecification(
+            final String vendor,
+            final String trailerName,
+            final String lat,
+            final String lang,
+            final String lastUpdate,
+            final String trailerType,
+            final String motion) {
+
+        return new Specification<Trailer>() {
+            @Override
+            public Predicate toPredicate(Root<Trailer> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+
+                List<Predicate> predicates = new LinkedList<>();
+
+                if (trailerName != null) {
+                    predicates.add(criteriaBuilder.equal(root.get("trailerName"), trailerName));
+                }
+
+                return null;
+            }
+        };
     }
 
 
