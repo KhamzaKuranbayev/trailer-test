@@ -1,10 +1,12 @@
 package uz.digitalone.trailertest.model;
 
 
+import java.util.List;
+
 @lombok.Data
 public class Root {
 
-    private Data[] data;
+    private List<Data> data;
 
    private Object[] included;
 

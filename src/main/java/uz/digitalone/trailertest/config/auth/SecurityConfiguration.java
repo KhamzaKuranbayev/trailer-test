@@ -32,7 +32,6 @@ public class SecurityConfiguration {
         } else {
             return new AuthResponse();
         }
-
     }
 
 

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 
@@ -21,9 +22,9 @@ public class Trailer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String type;
+    private String uniqueId;
 
-    private Long uniqueId;
+    private String type;
 
     public String distance;
 
@@ -31,17 +32,11 @@ public class Trailer {
 
     private String powerSource;
 
-    @OneToMany
-    private List<LandMark> landMarks;
-
     private String idleTime;
 
     private String speed;
 
-    private Timestamp lastPingDate;
-
-    @OneToMany
-    private List<LandMark> landMarksNear;
+    private String lastPingDate;
 
     private String batteryState;
 
@@ -55,10 +50,7 @@ public class Trailer {
 
     private String landmarkTrailerState;
 
-    @OneToMany
-    private List<Group> groups;
-
-    private Timestamp lastEventMessageDate;
+    private String lastEventMessageDate;
 
     private Double batteryPercentage;
 
@@ -67,4 +59,26 @@ public class Trailer {
     private Long trailerId;
 
     private String trailerState;
+
+    public Trailer(String uniqueId, String type, String distance, Double latitude, String powerSource, String idleTime, String speed, String lastPingDate, String batteryState, boolean useHeatIndex, String trailerName, Double longitude, String motionStatus, String landmarkTrailerState, String lastEventMessageDate, Double batteryPercentage, String location, Long trailerId, String trailerState) {
+        this.uniqueId = uniqueId;
+        this.type = type;
+        this.distance = distance;
+        this.latitude = latitude;
+        this.powerSource = powerSource;
+        this.idleTime = idleTime;
+        this.speed = speed;
+        this.lastPingDate = lastPingDate;
+        this.batteryState = batteryState;
+        this.useHeatIndex = useHeatIndex;
+        this.trailerName = trailerName;
+        this.longitude = longitude;
+        this.motionStatus = motionStatus;
+        this.landmarkTrailerState = landmarkTrailerState;
+        this.lastEventMessageDate = lastEventMessageDate;
+        this.batteryPercentage = batteryPercentage;
+        this.location = location;
+        this.trailerId = trailerId;
+        this.trailerState = trailerState;
+    }
 }
