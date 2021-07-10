@@ -37,8 +37,8 @@ public class TrailerServiceImpl implements TrailerService {
 
     @Override
     public List<Trailer> getAll(Integer pageNum, Integer size) {
-        //final Pageable page = PageRequest.of(pageNum, size);
-        return new ArrayList<>();
+        final Pageable page = PageRequest.of(pageNum, size);
+        return (List<Trailer>) trailerRepository.findAll(page);
     }
 
     @Override
@@ -53,7 +53,11 @@ public class TrailerServiceImpl implements TrailerService {
 
     @Override
     public Trailer findByTrailerId(Long id) {
-        return new Trailer();
+        final Optional<Trailer> optionalTrailer = trailerRepository.findByTrailerId(id);
+        if (optionalTrailer.isEmpty()) {
+            return null;
+        }
+        return optionalTrailer.get();
     }
 
 
