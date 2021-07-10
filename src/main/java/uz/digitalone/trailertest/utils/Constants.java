@@ -10,5 +10,6 @@ public interface Constants {
     String ROAD_READY_LOGIN = "SL-CARGOPRIME-API";
     String ROAD_READY_PASSWORD = "u@dl69XlcI";
 
+    String test = "";
 
 }
