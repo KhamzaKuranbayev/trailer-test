@@ -12,6 +12,7 @@ import uz.digitalone.trailertest.repository.TrailerRepository;
 import uz.digitalone.trailertest.rest.response.Response;
 import uz.digitalone.trailertest.service.TrailerService;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +21,9 @@ import java.util.List;
 public class ApiController {
 
     private final TrailerService trailerService;
-    final TrailerRepository trailerRepository;
 
-    public ApiController(TrailerService trailerService, TrailerRepository trailerRepository) {
+    public ApiController(TrailerService trailerService) {
         this.trailerService = trailerService;
-        this.trailerRepository = trailerRepository;
     }
 
     // Live data by id
@@ -48,15 +47,15 @@ public class ApiController {
     @GetMapping("/filter")
     public HttpEntity<?> getFilteredTrailers(@RequestParam(name = "vendor", defaultValue = "", required = false) String vendor,
                                              @RequestParam(name = "trailerNumber", defaultValue = "", required = false) String trailerName,
-                                             @RequestParam(name = "lat", defaultValue = "", required = false) String lat,
-                                             @RequestParam(name = "lang", defaultValue = "", required = false) String lang,
-                                             @RequestParam(name = "lastUpdate", defaultValue = "", required = false) String lastUpdate,
+                                             @RequestParam(name = "lat", defaultValue = "", required = false) Double lat,
+                                             @RequestParam(name = "lang", defaultValue = "", required = false) Double lang,
+                                             @RequestParam(name = "lastUpdate", defaultValue = "", required = false) Instant lastUpdate,
                                              @RequestParam(name = "trailerType", defaultValue = "", required = false) String trailerType,
                                              @RequestParam(name = "motion", defaultValue = "", required = false) String motion) {
 
-        Pageable pageable = PageRequest.of(0, 2);
+        Pageable pageable = PageRequest.of(0, 10);
 
-        Page<Trailer> trailerPage = trailerRepository.findAll(pageable);
+        Page<Trailer> trailerPage = trailerService.findFiltered(vendor, trailerName, lat, lang, lastUpdate, trailerType, motion, pageable);
 
         return ResponseEntity.ok(trailerPage.toList());
 

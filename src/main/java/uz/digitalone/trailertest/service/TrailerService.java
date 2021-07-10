@@ -2,8 +2,10 @@ package uz.digitalone.trailertest.service;
 
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import uz.digitalone.trailertest.entity.Trailer;
 
+import java.time.Instant;
 import java.util.List;
 
 public interface TrailerService {
@@ -16,7 +18,7 @@ public interface TrailerService {
 
     Trailer getByLocation(String location);
 
-    Page<Trailer> findFiltered(String vendor, String trailerNumber, String lat,
-                               String lang, String lastUpdate, String trailerType, String motion);
+    Page<Trailer> findFiltered(String vendor, String trailerNumber, Double lat,
+                               Double lang, Instant lastUpdate, String trailerType, String motion, Pageable pageable);
 
 }

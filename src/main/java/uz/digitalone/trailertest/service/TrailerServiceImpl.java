@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,35 +56,49 @@ public class TrailerServiceImpl implements TrailerService {
     }
 
     @Override
-    public Page<Trailer> findFiltered(String vendor, String trailerNumber, String lat, String lang,
-                                      String lastUpdate, String trailerType, String motion) {
-
-
-
-        return null;
+    public Page<Trailer> findFiltered(String vendor, String trailerNumber, Double lat, Double lang,
+                                      Instant lastUpdate, String trailerType, String motion, Pageable pageable) {
+        return trailerRepository.findAll(getFilterSpecification(vendor, trailerNumber, lat, lang, lastUpdate, trailerType, motion), pageable);
     }
 
     private static Specification<Trailer> getFilterSpecification(
             final String vendor,
             final String trailerName,
-            final String lat,
-            final String lang,
-            final String lastUpdate,
+            final Double lat,
+            final Double lang,
+            final Instant lastUpdate,
             final String trailerType,
             final String motion) {
 
-        return new Specification<Trailer>() {
-            @Override
-            public Predicate toPredicate(Root<Trailer> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+        return (root, criteriaQuery, criteriaBuilder) -> {
 
-                List<Predicate> predicates = new LinkedList<>();
+            List<Predicate> predicates = new LinkedList<>();
 
-                if (trailerName != null) {
-                    predicates.add(criteriaBuilder.equal(root.get("trailerName"), trailerName));
-                }
-
-                return null;
+            if (trailerName != null) {
+                predicates.add(criteriaBuilder.like(root.get("trailerName"), "%" + trailerName + "%"));
             }
+
+            if (lat != null) {
+                predicates.add(criteriaBuilder.equal(root.get("latitude"), lat));
+            }
+
+            if (lang != null) {
+                predicates.add(criteriaBuilder.equal(root.get("longitude"), lang));
+            }
+
+            if (lastUpdate != null) {
+                predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("lastPingDate"), lastUpdate));
+            }
+
+            if (trailerType != null) {
+                predicates.add(criteriaBuilder.like(root.get("type"), "%" + trailerType + "%"));
+            }
+
+            if (motion != null) {
+                predicates.add(criteriaBuilder.like(root.get("motionStatus"), "%" + motion + "%"));
+            }
+
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
 
