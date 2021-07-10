@@ -45,7 +45,7 @@ public class CronTask {
         this.trailerRepository = trailerRepository;
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 300000)
     public void scheduleTrailerData() {
         String token = "";
         if (refreshToken.getToken() != null) {
@@ -106,25 +106,42 @@ public class CronTask {
                 }
 
                 saveOrUpdate(trailerList);
-
             }
         }
     }
 
     private void saveOrUpdate(List<Trailer> trailerList) {
         for (Trailer trailer : trailerList) {
-
             Optional<Trailer> optionalTrailer = trailerRepository.findByTrailerId(trailer.getTrailerId());
 
-            if(optionalTrailer.isPresent()) {
+            if (optionalTrailer.isPresent()) {
                 Trailer trailer1 = optionalTrailer.get();
-                trailer1 = trailer;
-
-
-
+                Trailer trailer2 = new Trailer(
+                        trailer1.getId(),
+                        trailer.getUniqueId(),
+                        trailer.getUniqueId(),
+                        trailer.getDistance(),
+                        trailer.getLatitude(),
+                        trailer.getPowerSource(),
+                        trailer.getIdleTime(),
+                        trailer.getSpeed(),
+                        trailer.getLastPingDate(),
+                        trailer.getBatteryState(),
+                        trailer.isUseHeatIndex(),
+                        trailer.getTrailerName(),
+                        trailer.getLongitude(),
+                        trailer.getMotionStatus(),
+                        trailer.getLandmarkTrailerState(),
+                        trailer.getLastEventMessageDate(),
+                        trailer.getBatteryPercentage(),
+                        trailer.getLocation(),
+                        trailer.getTrailerId(),
+                        trailer.getTrailerState()
+                );
+                trailerRepository.save(trailer2);
+            } else {
+                trailerRepository.save(trailer);
             }
-
-
         }
     }
 
