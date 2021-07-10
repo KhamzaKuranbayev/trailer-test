@@ -23,6 +23,12 @@ import uz.digitalone.trailertest.utils.Constants;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,6 +53,7 @@ public class CronTask {
 
     @Scheduled(fixedDelay = 300000)
     public void scheduleTrailerData() {
+        System.out.println("o'zgardi");
         String token = "";
         if (refreshToken.getToken() != null) {
             token = refreshToken.getToken();
@@ -89,14 +96,14 @@ public class CronTask {
                             attributes.getPowerSource(),
                             attributes.getIdleTime(),
                             attributes.getSpeed(),
-                            attributes.getLastPingDate(),
+                            parseToInstant(attributes.getLastPingDate()),
                             attributes.getBatteryState(),
                             attributes.isUseHeatIndex(),
                             attributes.getTrailerName(),
                             attributes.getLongitude(),
                             attributes.getMotionStatus(),
                             attributes.getLandmarkTrailerState(),
-                            attributes.getLastEvent().getMessageDate(),
+                            parseToInstant(attributes.getLastEvent().getMessageDate()),
                             attributes.getBatteryPercentage(),
                             attributes.getLocation(),
                             attributes.getTrailerId(),
@@ -108,6 +115,14 @@ public class CronTask {
                 saveOrUpdate(trailerList);
             }
         }
+    }
+
+    private Instant parseToInstant(String time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        TemporalAccessor temporalAccessor = formatter.parse(time);
+        LocalDateTime localDateTime = LocalDateTime.from(temporalAccessor);
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+        return Instant.from(zonedDateTime);
     }
 
     private void saveOrUpdate(List<Trailer> trailerList) {

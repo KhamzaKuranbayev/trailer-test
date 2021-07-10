@@ -36,7 +36,7 @@ public class Trailer {
 
     private String speed;
 
-    private String lastPingDate;
+    private Instant lastPingDate;
 
     private String batteryState;
 
@@ -50,7 +50,7 @@ public class Trailer {
 
     private String landmarkTrailerState;
 
-    private String lastEventMessageDate;
+    private Instant lastEventMessageDate;
 
     private Double batteryPercentage;
 
@@ -60,7 +60,7 @@ public class Trailer {
 
     private String trailerState;
 
-    public Trailer(String uniqueId, String type, String distance, Double latitude, String powerSource, String idleTime, String speed, String lastPingDate, String batteryState, boolean useHeatIndex, String trailerName, Double longitude, String motionStatus, String landmarkTrailerState, String lastEventMessageDate, Double batteryPercentage, String location, Long trailerId, String trailerState) {
+    public Trailer(String uniqueId, String type, String distance, Double latitude, String powerSource, String idleTime, String speed, Instant lastPingDate, String batteryState, boolean useHeatIndex, String trailerName, Double longitude, String motionStatus, String landmarkTrailerState, Instant lastEventMessageDate, Double batteryPercentage, String location, Long trailerId, String trailerState) {
         this.uniqueId = uniqueId;
         this.type = type;
         this.distance = distance;
