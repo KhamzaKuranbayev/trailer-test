@@ -35,6 +35,15 @@ public class ApiController {
     }
 
 
+
+    @ApiOperation(value = "Trailer Location bo'yicha olish", response = Trailer.class)
+    @GetMapping("/{location}")
+    public HttpEntity<?> getByLocation(@PathVariable String location) {
+        final Trailer trailer = trailerService.getByLocation(location);
+        return ResponseEntity.status(200).body(trailer);
+    }
+
+
     @ApiOperation(value = "Live holatida barcha Trailerlarni olish", response = Trailer[].class)
     @GetMapping("/all")
     public HttpEntity<?> getAll(@RequestParam Integer pageNumber, @RequestParam Integer size) {

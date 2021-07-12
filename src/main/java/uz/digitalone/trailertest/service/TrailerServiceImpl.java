@@ -43,7 +43,12 @@ public class TrailerServiceImpl implements TrailerService {
 
     @Override
     public Trailer getByLocation(String location) {
-        return null;
+        Optional<Trailer> byLocation = trailerRepository.findByLocation(location);
+        if (byLocation.isPresent()) {
+            return null;
+        }
+
+        return byLocation.get();
     }
 
     @Override
